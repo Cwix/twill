@@ -48,7 +48,7 @@ class BlockRepository extends ModuleRepository
             Collection::make($fields['browsers'])->each(function ($items, $browserName) use (&$relatedItems) {
                 Collection::make($items)->each(function ($item) use ($browserName, &$relatedItems) {
                     try {
-                        $repository = $this->getModelRepository($item['endpointType'] ?? $browserName);
+                        $repository = $this->getModelRepository($browserName);
                         $relatedItems->push((object) [
                             'related' => $repository->getById($item['id']),
                             'browser_name' => $browserName,
